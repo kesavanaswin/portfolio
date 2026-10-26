@@ -1,0 +1,650 @@
+/* =========================================================
+   DARK ARCHIVE: charcoal ground, aged parchment, graphite lines,
+   hand-lettered display, burgundy pencil notes. Readability first.
+   ========================================================= */
+
+:root {
+  color-scheme: dark;
+  /* ---- Paper & graphite ---- */
+  --c-paper: #292722; /* warm charcoal — --bg */
+  --c-paper-2: #211f1b; /* dark espresso — --surface */
+  --c-paper-3: #343029; /* raised charcoal — --surface-raised */
+  --c-paper-edge: #514b40; /* graphite edge — --border */
+  --c-parchment: #dccdaa;
+  --c-parchment-light: #efe5d0;
+  --c-parchment-ink: #38342c;
+  --c-ink: #efe5d0; /* warm paper ink — --text-primary */
+  --c-ink-2: #bdb3a0; /* secondary graphite — --text-secondary */
+  --c-ink-3: #a99e88; /* faint graphite */
+  --c-rule: #514b40; /* guide lines — --border */
+  --c-graph: #777064; /* pencil graphite */
+
+  /* accents: burgundy ink + antique brass — --accent / --accent-strong */
+  --c-red: #b96558;
+  --c-red-2: #985047;
+  --c-blue: #ba9b69; /* --brass */
+  --c-blue-2: #a88a5d;
+  --c-marker: #ba9b69;
+  --c-marker-2: #a88a5d;
+  --wash-top: rgba(239, 229, 208, 0.035);
+  --wash-brass: rgba(186, 155, 105, 0.055);
+  --wash-red: rgba(152, 80, 71, 0.075);
+  --nav-scrim: rgba(47, 45, 41, 0.35);
+  --nav-shadow: rgba(47, 45, 41, 0.6);
+  --c-link-line: rgba(239, 229, 208, 0.3);
+  --sheet-line: rgba(239, 229, 208, 0.2);
+
+  /* ---- Layout ---- */
+  --maxw: 1140px;
+  --gutter: clamp(20px, 5vw, 46px);
+  --nav-h: 66px;
+  --r: 4px;
+
+  /* ---- Type ---- */
+  --font-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed",
+    sans-serif;
+  --font-body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+  --font-hand: "Caveat", "Segoe Script", cursive;
+
+  /* Responsive editorial type scale: sized from a 360 px mobile canvas. */
+  --type-hero: clamp(2.75rem, 10vw, 6.5rem);
+  --type-section: clamp(2rem, calc(3.5vw + 1rem), 3.5rem);
+  --type-project: clamp(1.5625rem, calc(2.25vw + 0.8rem), 2.25rem);
+  --type-body: clamp(1rem, calc(0.35vw + 0.95rem), 1.125rem);
+  --type-nav: clamp(0.875rem, calc(0.15vw + 0.875rem), 0.9375rem);
+  --type-meta: clamp(0.6875rem, calc(0.3vw + 0.65rem), 0.875rem);
+  --type-note: clamp(0.9375rem, calc(0.6vw + 0.8rem), 1.25rem);
+  --leading-display: 1.04;
+  --leading-body: 1.72;
+  --tracking-display: -0.035em;
+  --tracking-section: -0.015em;
+
+  /* ---- Paper textures ---- */
+  --tex-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+
+  /* Graph-paper grid */
+  --tex-grid: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cpath d='M26 0H0V26' fill='none' stroke='%238a8577' stroke-width='0.6' opacity='0.4'/%3E%3C/svg%3E");
+
+  /* Hand-drawn squiggle underline */
+  --squiggle-red: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 4.4C18 1.4 38 5 56 3.4S86 2.2 98 4.2' fill='none' stroke='%23b96558' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  --squiggle-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 4.4C18 1.4 38 5 56 3.4S86 2.2 98 4.2' fill='none' stroke='%23ba9b69' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+
+  /* Back-compat aliases */
+  --c-bg: var(--c-paper);
+  --c-deep: var(--c-paper-2);
+  --c-stone: var(--c-paper-3);
+  --c-paper-lt: var(--c-paper-3);
+  --c-ivory: var(--c-ink);
+  --c-sand: var(--c-ink-2);
+  --c-brass: var(--c-blue);
+  --c-burg: var(--c-red);
+  --c-burg-2: var(--c-red-2);
+  --squiggle-gold: var(--squiggle-red);
+  --squiggle-burg: var(--squiggle-red);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --c-paper: #e9dfc7; /* --bg */
+    --c-paper-2: #ded0af; /* --surface */
+    --c-paper-3: #f0e7d3; /* --surface-raised */
+    --c-paper-edge: #b7a98d; /* --border */
+    --c-parchment: #ded0af;
+    --c-parchment-light: #f3e9d3;
+    --c-parchment-ink: #292722;
+    --c-ink: #292722; /* --text-primary */
+    --c-ink-2: #625d52; /* --text-secondary */
+    --c-ink-3: #6b6353;
+    --c-rule: #b7a98d; /* --border */
+    --c-graph: #5c5548; /* --graphite */
+    --c-red: #873b3b; /* --accent */
+    --c-red-2: #6f2d2d; /* --accent-strong */
+    --c-blue: #8d7048; /* --brass */
+    --c-blue-2: #7d653f;
+    --c-marker: #ba9b69;
+    --c-marker-2: #a88a5d;
+    --wash-top: rgba(255, 252, 243, 0.46);
+    --wash-brass: rgba(186, 155, 105, 0.12);
+    --wash-red: rgba(135, 59, 59, 0.035);
+    --nav-scrim: rgba(41, 39, 34, 0.24);
+    --nav-shadow: rgba(41, 39, 34, 0.16);
+    --c-link-line: rgba(47, 45, 41, 0.3);
+    --sheet-line: rgba(47, 45, 41, 0.22);
+    --squiggle-red: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 4.4C18 1.4 38 5 56 3.4S86 2.2 98 4.2' fill='none' stroke='%23873b3b' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+    --squiggle-blue: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 6' preserveAspectRatio='none'%3E%3Cpath d='M2 4.4C18 1.4 38 5 56 3.4S86 2.2 98 4.2' fill='none' stroke='%2392764a' stroke-width='1.8' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+}
+
+/* ---------- Reset ---------- */
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--leading-body);
+  background-color: var(--c-paper);
+  background-image: linear-gradient(180deg, var(--wash-top), transparent 30%),
+    radial-gradient(60rem 40rem at 80% -6%, var(--wash-brass), transparent 60%),
+    radial-gradient(48rem 36rem at 8% 40%, var(--wash-red), transparent 62%);
+  color: var(--c-ink);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  transition: color 0.35s ease, background-color 0.35s ease,
+    background-image 0.35s ease;
+}
+
+*,
+*::before,
+*::after {
+  transition-property: color, background-color, border-color;
+  transition-duration: 0.32s;
+  transition-timing-function: ease;
+}
+
+/* Paper grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: var(--tex-noise);
+  background-size: 300px 300px;
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--c-marker);
+  color: var(--c-paper-2);
+}
+
+:focus-visible {
+  outline: 2px dashed var(--focus, var(--c-red));
+  outline-offset: 4px;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--c-paper-2);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--c-graph);
+  border-radius: 999px;
+  border: 2px solid var(--c-paper-2);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--c-ink-3);
+}
+
+/* ---------- Skip link ---------- */
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 400;
+  background: var(--c-ink);
+  color: var(--c-paper);
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.skip-link:focus {
+  left: 12px;
+  top: 12px;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  width: min(var(--maxw), 100% - var(--gutter) * 2);
+  margin-inline: auto;
+}
+
+main {
+  display: block;
+}
+
+.section {
+  --fg: var(--c-ink);
+  --fg-2: var(--c-ink-2);
+  --acc: var(--c-red);
+  --link-line: var(--c-link-line);
+  --line: var(--c-rule);
+  --focus: var(--c-red);
+
+  position: relative;
+  color: var(--fg);
+  padding: clamp(68px, 9vw, 118px) 0;
+  scroll-margin-top: calc(var(--nav-h) + 10px);
+}
+
+/*
+ * Sections are separated by a single hairline rule, not a filled band.
+ * The rule draws in from the left on reveal — the one structural motion
+ * that repeats down the page, tying the whole document together.
+ */
+.section--deep,
+.section--stone {
+  background: none;
+}
+
+.section + .section {
+  border-top: 1px solid var(--c-rule);
+}
+
+/* ---------- Editorial primitives (box-free) ---------- */
+
+/*
+ * .sheet is now inert: containers no longer carry a fill or a border.
+ * It only establishes local colour tokens so children keep their own
+ * foreground without any boxed shape around them.
+ */
+.sheet {
+  --fg: var(--c-ink);
+  --fg-2: var(--c-ink-2);
+  --acc: var(--c-red);
+  --link-line: var(--c-link-line);
+  --line: var(--sheet-line);
+  --focus: var(--c-red);
+
+  position: relative;
+  color: var(--fg);
+  background: none;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.sheet::before {
+  content: none;
+}
+
+/* Retired decorations — kept as no-ops so old markup stays valid. */
+.torn-top,
+.torn-bottom,
+.torn-both,
+.stacked {
+  background: none;
+  box-shadow: none;
+}
+
+.tape {
+  display: none;
+}
+
+.stamp {
+  pointer-events: none;
+}
+
+.stamp-mark {
+  font-family: var(--font-mono);
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  line-height: 1;
+}
+
+.stamp-text {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+
+/*
+ * .hairline — a full-width pencil rule. Used between records, rows and
+ * blocks in place of cards. Optionally draws itself in on reveal.
+ */
+.hairline {
+  border: none;
+  border-top: 1px solid var(--c-rule);
+  transform-origin: left center;
+}
+
+.motion-ready .hairline {
+  transform: scaleX(0);
+  transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1)
+    var(--d, 0ms);
+}
+
+.motion-ready .hairline.is-inview,
+.is-inview .motion-ready .hairline {
+  transform: scaleX(1);
+}
+
+/* ---------- Type utilities ---------- */
+
+.mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--type-meta);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+.hand {
+  font-family: var(--font-hand);
+  font-size: var(--type-note);
+  font-weight: 600;
+  line-height: 1.2;
+  color: var(--acc);
+}
+
+.hand--sm {
+  font-size: 1rem;
+}
+
+.hand--lg {
+  font-size: clamp(1.5rem, 2.6vw, 1.75rem);
+}
+
+.sec-head {
+  position: relative;
+  margin-bottom: clamp(30px, 4.5vw, 52px);
+  max-width: 68ch;
+}
+
+/*
+ * The section opener is set like a printed index entry: a mono number,
+ * a hairline that runs to the end of the row, then the display heading.
+ */
+.sec-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.sec-top .sec-rule {
+  flex: 1;
+  height: 1px;
+  background: var(--c-rule);
+  transform-origin: left center;
+}
+
+.sec-mark {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: var(--type-meta);
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-red);
+}
+
+.sec-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: var(--type-section);
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-section);
+  text-transform: uppercase;
+  color: var(--c-ink);
+  max-width: 20ch;
+  text-wrap: balance;
+}
+
+.sec-title .accent {
+  color: var(--c-red);
+}
+
+.sec-lede {
+  margin-top: 16px;
+  max-width: 58ch;
+  color: var(--fg-2);
+  font-size: clamp(1rem, 1.25vw, 1.0625rem);
+  line-height: 1.74;
+}
+
+.title-scribble {
+  display: block;
+  width: clamp(150px, 26vw, 280px);
+  margin-top: 10px;
+  color: var(--acc);
+  opacity: 0.9;
+}
+
+/* ---------- Links ---------- */
+
+.hand-link,
+.ink-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--c-ink);
+  padding-bottom: 5px;
+  border-bottom: 1.5px solid var(--link-line);
+  background-repeat: no-repeat;
+  background-position: left calc(100% - 1px);
+  background-size: 0% 6px;
+  transition: background-size 0.35s ease, border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.hand-link {
+  background-image: var(--squiggle-blue);
+}
+
+.ink-link {
+  background-image: var(--squiggle-red);
+}
+
+.hand-link:hover,
+.hand-link:focus-visible,
+.ink-link:hover,
+.ink-link:focus-visible {
+  background-size: 100% 6px;
+  border-color: transparent;
+}
+
+.hand-link:hover {
+  color: var(--c-blue);
+}
+
+.ink-link:hover {
+  color: var(--c-red);
+}
+
+.hand-link svg,
+.ink-link svg {
+  flex: none;
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+/* ---------- Motion: editorial, restrained ---------- */
+
+/*
+ * Three reveal behaviours, all quiet and typographic:
+ *   .reveal        — content rises a few pixels and fades up.
+ *   .reveal--rule  — a hairline wipes in from the left (for separators).
+ *   .reveal--focus — a heading rises and its letter-spacing settles,
+ *                    so type feels "set" rather than animated.
+ * Everything is staggered by --d (ms) set inline, top-to-bottom, like
+ * typesetting a page.
+ */
+
+.motion-ready .reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.65s ease,
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+  transition-delay: var(--d, 0ms);
+}
+
+.motion-ready .reveal.is-inview {
+  opacity: 1;
+  transform: none;
+}
+
+.motion-ready .reveal--rule {
+  opacity: 1;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.85s cubic-bezier(0.22, 0.61, 0.36, 1)
+    var(--d, 0ms);
+}
+
+.motion-ready .reveal--rule.is-inview {
+  transform: scaleX(1);
+}
+
+.motion-ready .reveal--focus {
+  opacity: 0;
+  transform: translateY(10px);
+  letter-spacing: -0.02em;
+  transition: opacity 0.7s ease,
+    transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1),
+    letter-spacing 0.9s cubic-bezier(0.22, 0.61, 0.36, 1),
+    color 0.35s ease, background-color 0.35s ease, border-color 0.35s ease;
+  transition-delay: var(--d, 0ms);
+}
+
+.motion-ready .reveal--focus.is-inview,
+.motion-ready .reveal.is-inview .reveal--focus {
+  opacity: 1;
+  transform: none;
+  letter-spacing: 0;
+}
+
+/* Legacy paper-rotation reveal still supported (kept subtle). */
+.motion-ready .reveal--paper {
+  transform: translateY(18px) rotate(calc(var(--r, 0deg) - 0.5deg));
+}
+
+.motion-ready .reveal--paper.is-inview {
+  transform: rotate(var(--r, 0deg));
+}
+
+.parallax {
+  transform: translate3d(0, var(--py, 0px), 0);
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .parallax {
+    transform: none !important;
+  }
+
+  .motion-ready .hairline {
+    transform: none;
+  }
+}
+
+/* Portfolio motion polish: editorial, hand-drawn and responsive. */
+@keyframes hero-rise-in {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes margin-doodle-drift {
+  0%, 100% { transform: translateY(0) rotate(-3deg); }
+  50% { transform: translateY(-7px) rotate(4deg); }
+}
+@keyframes ink-draw {
+  from { stroke-dashoffset: 180; }
+  to { stroke-dashoffset: 0; }
+}
+@keyframes gentle-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -5px; }
+}
+.motion-ready .hero-eyebrow { animation: hero-rise-in .65s .04s both cubic-bezier(.2,.7,.2,1); }
+.motion-ready .hero-sheet { animation: hero-rise-in .8s .12s both cubic-bezier(.2,.7,.2,1); }
+.motion-ready .hero-monitor { animation: hero-rise-in .9s .3s both cubic-bezier(.2,.7,.2,1); }
+.motion-ready .hero-doodle--star { animation: margin-doodle-drift 5s ease-in-out infinite; }
+.motion-ready .hero-doodle--cross { animation: margin-doodle-drift 6s ease-in-out infinite reverse; }
+.motion-ready .hero-underline path,
+.motion-ready .title-scribble path { stroke-dasharray: 180; animation: ink-draw 1.05s .3s both ease-out; }
+.reveal { backface-visibility: hidden; }
+.project-card, .cert-row, .skill-list li, .contact-link, .exp-item { transition: transform .28s ease, border-color .28s ease, background-color .28s ease, box-shadow .28s ease; }
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover, .cert-row:hover { transform: translateY(-4px); }
+  .skill-list li:hover { transform: translateX(4px); }
+  .contact-link:hover { transform: translateX(5px); }
+  .hero-action:hover { transform: translateY(-2px); }
+}
+@media (max-width: 700px) {
+  :root { --nav-h: 60px; --gutter: 18px; }
+  .hero { padding-top: 28px; }
+  .hero-wrap { padding-bottom: 10px; }
+  .hero-sheet { width: 100%; margin-left: 0; }
+  .hero-eyebrow { padding-left: 0; }
+  .hero-name { overflow-wrap: anywhere; font-size: clamp(2.65rem, 12.5vw, 4.4rem); }
+  .hero-role { line-height: 1.8; letter-spacing: .06em; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px 22px; }
+  .hero-monitor { max-width: 100%; }
+  .section { scroll-margin-top: calc(var(--nav-h) + 12px); }
+  .contact-link { gap: 8px; }
+  .contact-value { overflow-wrap: anywhere; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-ready .hero-eyebrow, .motion-ready .hero-sheet, .motion-ready .hero-monitor,
+  .motion-ready .hero-doodle--star, .motion-ready .hero-doodle--cross,
+  .motion-ready .hero-underline path, .motion-ready .title-scribble path { animation: none !important; }
+}
