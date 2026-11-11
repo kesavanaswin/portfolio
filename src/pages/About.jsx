@@ -6,7 +6,6 @@ import {
   DoodleUnderline,
 } from "../components/sketches/Sketches";
 import { SketchSecurityNotebook } from "../components/sketches/CyberSketches";
-import SkillSignature from "../components/SkillSignature";
 
 const interests = [
   "Ethical Hacking",
@@ -148,10 +147,6 @@ function About() {
         </Reveal>
 
         <Reveal className="about-block about-skills">
-          <p className="hand about-block-title">technical skills</p>
-
-          <SkillSignature />
-
           <p className="mono-label skill-index-label">tools and topics / index</p>
 
           <div className="skill-groups">
